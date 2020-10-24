@@ -27,6 +27,9 @@ app.use(session({ secret: 'my secret', resave: false, saveUninitialized: false }
 
 app.use((req, res, next) => {
   req.session.loggedIn = false
+  if (req.user) {
+    res.locals.user = req.user;
+  }
   next();
 })
 

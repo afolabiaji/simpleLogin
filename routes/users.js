@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+
+let isAuth = require('../middleware/is-auth');
+let usersController = require('../controllers/users');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/', isAuth, usersController.getUsers);
 
 module.exports = router;

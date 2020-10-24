@@ -1,4 +1,5 @@
-var User = require('../models/user')
+let User = require('../models/user')
+let bcrypt = require('bcryptjs')
 
 exports.postSignup = async (req, res, next) => {
     const email = req.body.email;
@@ -13,15 +14,16 @@ exports.postSignup = async (req, res, next) => {
             if (userObj) {
                 return res.redirect('/signup')
             }
-
+            const hashedPassword = await bcrypt.hash(password, 12)
             const user = await User.create({
                 email: email,
                 username: username,
-                password: password
+                password: hashedPassword
             })
 
             console.log(user)
-
+            return res.redirect('/login')
+            
         } catch (err) {
             console.log(err)
         }
