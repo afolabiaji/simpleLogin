@@ -5,4 +5,4 @@ const sequelize = new Sequelize('simpleLogin', 'postgres', '+vw(Es!v>DJG2ZH!', {
     dialect: 'postgres'
 })
 
-module.exports = sequelize;d
+module.exports = sequelize;
